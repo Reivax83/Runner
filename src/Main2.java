@@ -1,11 +1,9 @@
 // Runner de Xavier Bourguet
+//cliquer pour sauter
+//espace pour naviguer
 
 import javafx.application.Application;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.Group;
-import javafx.scene.Scene;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
@@ -15,8 +13,6 @@ public class Main2 extends Application{
 
     public void start(Stage primaryStage){
         primaryStage.setTitle("Demo");
-        /*Group root = new Group();
-        Scene scene = new Scene(root, 600, 400);*/
         Text info = new Text(0, 150, " Appyez sur espace pour accéder au score");
         info.setFont(new Font(30));
         info.setFill(Color.RED);
@@ -28,8 +24,6 @@ public class Main2 extends Application{
         text.setFont(new Font(35));
         text.setFill(Color.RED);
 
-
-
         Text score = new Text(0, 150, "Votre score : " + (char)stage.getHero().getX());
         score.setFont(new Font(35));
         score.setFill(Color.RED);
@@ -38,16 +32,12 @@ public class Main2 extends Application{
         root2.getChildren().add(stage.getRightBackground().getStaticView());
         root2.getChildren().add(text);
 
-        //root2.getChildren().add(stage.getListeBad().get(0).getImage());
-
         primaryStage.setScene(stage);
         stage.setOnKeyPressed( event -> {
             System.out.println("Press");
             if(stage.getGameStart()==0 && stage.getGameEnd()==0) {
                 stage.setGameStart(1);
                 updateStart(root2, stage, text);
-                //press space to start
-                System.out.println("Start");
             }
             else {
                 if (stage.getGameEnd() == 1 && stage.getGameStart() == 1) {
@@ -55,21 +45,13 @@ public class Main2 extends Application{
                     updateEnd(root2, stage);
                     root2.getChildren().remove(info);
                     root2.getChildren().add(score);
-                    System.out.println("retour menu ou score");
                 }
                 else{
                     if(stage.getGameStart() == 0 && stage.getGameEnd() == 1) {
-                        //retour menu recrée tout
-
                         root2.getChildren().remove(score);
                         stage.setGameEnd(0);
                         stage.reset();
                         root2.getChildren().add(text);
-                        System.out.println("attente du redépart ou retour menu de départ");
-                    /*root2 = new Group();
-                    stage = new GameScene(root2, 600, 300,800,0);
-                    root2.getChildren().add(stage.getLeftBackground().getStaticView());
-                    root2.getChildren().add(stage.getRightBackground().getStaticView());*/
                     }
                 }
             }
